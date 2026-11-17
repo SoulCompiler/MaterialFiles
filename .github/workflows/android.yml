@@ -1,6 +1,12 @@
-name: Android CI
+name: Custom Android build
 
-on: [push]
+on:
+  push:
+    branches: [codex/two-line-file-names]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -12,16 +18,20 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: true
-    - name: Set up JDK 17
+    - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '21'
-    - name: Build with Gradle
-      run: ./gradlew assembleDebug lintVitalRelease
+    - name: Prepare F-Droid source variant
+      run: |
+        rg -l --null '//#ifdef NONFREE' app | xargs -0 sed -i '/\/\/#ifdef NONFREE/,/\/\/#endif/d'
+        rm -r app/src/main/java/me/zhanghai/android/files/nonfree
+    - name: Build release APK
+      run: ./gradlew --no-daemon assembleRelease
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug.apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: material-files-unsigned
+        path: app/build/outputs/apk/release/*.apk
         retention-days: 10

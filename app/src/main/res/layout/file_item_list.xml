@@ -10,10 +10,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/itemLayout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/two_line_list_item_height"
+    android:layout_height="wrap_content"
     android:foreground="?selectableItemBackground"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:minHeight="96dp"
+    android:orientation="horizontal"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
 
     <FrameLayout
         android:id="@+id/iconLayout"
@@ -74,14 +77,13 @@
         android:duplicateParentState="true"
         android:orientation="vertical">
 
-        <!-- Lint says android:ellipsize="middle" and android:maxLines="1" crashes. -->
         <TextView
             android:id="@+id/nameText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:duplicateParentState="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textAppearance="?textAppearanceListItem" />
 
         <me.zhanghai.android.files.ui.AutoGoneTextView

@@ -1,5 +1,22 @@
 # Material Files
 
+This fork maintains a two-line filename layout for list view, based on upstream **v1.7.5**.
+
+- List items have a minimum height of 96dp and expand with larger text.
+- Filenames wrap to two lines and truncate at the end when longer. Grid view is unchanged.
+- List filenames use this fixed layout rather than the upstream single-line truncation and scrolling preference.
+- Custom release: **1.7.5-sc.1** (version code **4001**), package `me.zhanghai.android.files`.
+
+[Download custom APKs](https://github.com/SoulCompiler/MaterialFiles/releases) · [Upstream](https://github.com/zhanghai/MaterialFiles)
+
+## Build this fork
+
+Run **Custom Android build** in this repository's Actions tab. The workflow removes the same `NONFREE` source blocks as the F-Droid build and uploads an unsigned release APK as `material-files-unsigned`.
+
+Sign the APK with the private release key maintained outside this repository before installation. Keep using the same key for future updates. Replacing an upstream-signed installation requires uninstalling it first; preserve and migrate its application configuration during that replacement.
+
+## Upstream documentation
+
 [本文中文版](README_zh-CN.md)
 
 [![Android CI status](https://github.com/zhanghai/MaterialFiles/workflows/Android%20CI/badge.svg)](https://github.com/zhanghai/MaterialFiles/actions) [![GitHub release](https://img.shields.io/github/v/release/zhanghai/MaterialFiles)](https://github.com/zhanghai/MaterialFiles/releases) [![License](https://img.shields.io/github/license/zhanghai/MaterialFiles?color=blue)](LICENSE)
