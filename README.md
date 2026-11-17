@@ -11,7 +11,7 @@
 
 ## 构建与签名
 
-在本仓库的 Actions 中运行 **Custom Android build**。工作流使用 JDK 21，按 F-Droid 配方移除 `NONFREE` 源码块，上传名为 `material-files-unsigned` 的未签名 release APK。
+构建仅手动触发，推送代码不会自动运行。在本仓库的 Actions 中选择 **Custom Android build**，点击 **Run workflow**。工作流使用 JDK 21，按 F-Droid 配方移除 `NONFREE` 源码块，上传名为 `material-files-unsigned` 的未签名 release APK。
 
 维护电脑的签名密钥位于 `%LOCALAPPDATA%\MaterialFiles\signing\release.p12`，别名为 `material-files`，密码文件为同目录的 `release.password`。使用 Android SDK Build Tools 的 `apksigner` 签名：
 

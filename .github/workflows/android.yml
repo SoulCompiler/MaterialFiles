@@ -1,14 +1,6 @@
 name: Custom Android build
 
 on:
-  push:
-    branches: [codex/two-line-file-names]
-    paths:
-      - 'app/**'
-      - 'gradle/**'
-      - '*.gradle'
-      - 'gradle.properties'
-      - '.github/workflows/android.yml'
   workflow_dispatch:
 
 permissions:
