@@ -1,21 +1,27 @@
 # Material Files
 
-This fork maintains a two-line filename layout for list view, based on upstream **v1.7.5**.
+本仓库基于上游 **v1.7.5**，维护列表视图的两行文件名布局。
 
-- List items have a minimum height of 96dp and expand with larger text.
-- Filenames wrap to two lines and truncate at the end when longer. Grid view is unchanged.
-- List filenames use this fixed layout rather than the upstream single-line truncation and scrolling preference.
-- Custom release: **1.7.5-sc.1** (version code **4001**), package `me.zhanghai.android.files`.
+- 列表项最小高度为 96dp，字号增大时高度随内容增长。
+- 文件名自动换行，最多两行，超出部分在末尾省略；网格视图沿用上游布局。
+- 列表采用固定两行布局，上游的单行省略和滚动偏好不影响此布局。
+- 定制版本为 **1.7.5-sc.1**（版本码 **4001**），包名为 `me.zhanghai.android.files`。
 
-[Download custom APKs](https://github.com/SoulCompiler/MaterialFiles/releases) · [Upstream](https://github.com/zhanghai/MaterialFiles)
+[下载定制 APK](https://github.com/SoulCompiler/MaterialFiles/releases) · [上游源码](https://github.com/zhanghai/MaterialFiles)
 
-## Build this fork
+## 构建与签名
 
-Run **Custom Android build** in this repository's Actions tab. The workflow removes the same `NONFREE` source blocks as the F-Droid build and uploads an unsigned release APK as `material-files-unsigned`.
+在本仓库的 Actions 中运行 **Custom Android build**。工作流使用 JDK 21，按 F-Droid 配方移除 `NONFREE` 源码块，上传名为 `material-files-unsigned` 的未签名 release APK。
 
-Sign the APK with the private release key maintained outside this repository before installation. Keep using the same key for future updates. Replacing an upstream-signed installation requires uninstalling it first; preserve and migrate its application configuration during that replacement.
+维护电脑的签名密钥位于 `%LOCALAPPDATA%\MaterialFiles\signing\release.p12`，别名为 `material-files`，密码文件为同目录的 `release.password`。使用 Android SDK Build Tools 的 `apksigner` 签名：
 
-## Upstream documentation
+```powershell
+apksigner sign --ks "$env:LOCALAPPDATA/MaterialFiles/signing/release.p12" --ks-key-alias material-files --ks-pass "file:$env:LOCALAPPDATA/MaterialFiles/signing/release.password" --out material-files-1.7.5-sc.1.apk app-release-unsigned.apk
+```
+
+后续版本沿用同一密钥签名。密钥与密码文件保存在仓库之外。替换上游签名的安装包时，先迁移应用配置，再卸载原版并安装定制版；后续定制版可直接覆盖更新。
+
+## 上游说明
 
 [本文中文版](README_zh-CN.md)
 
